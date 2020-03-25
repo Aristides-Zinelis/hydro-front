@@ -28,7 +28,6 @@ import FormComponent from '@/components/damp/FormComponent'
   },
   methods: {
        async addRiver(e) {
-         console.log(e)
            this.$store.dispatch('addRiver', e)
            this.added = true
         },

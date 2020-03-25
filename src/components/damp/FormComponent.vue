@@ -54,7 +54,6 @@ export default {
       },
     methods: {
        async validateForm(e) {
-           console.log(Object.keys(this.river).length)
            if( Object.keys(this.river).length >= 4 ){            
                 this.errors=[]
                 this.formSubmited = true

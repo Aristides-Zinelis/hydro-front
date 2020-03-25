@@ -28,7 +28,6 @@ export default new Vuex.Store({
       state.rivers.push(river)
     },
    SELECT_RIVER : (state, river) => {
-     console.log('river', river)
       state.selectedRiver = river
     },
     REMOVE_RIVER: (state, id) => {
@@ -45,19 +44,20 @@ export default new Vuex.Store({
     async addRiver({commit}, payload){
       await $axios.post('/rivers/create', payload).then((response) => {
         commit('SET_RIVERS', response.data);
+        console.log(response.data)
     });
           
   },
   async updateRiver({commit}, payload){
-    console.log(payload.id)
     await $axios.put(`/rivers/${payload.id}/update`, payload).then((response) => {
       commit('SET_RIVERS', response.data);
+      console.log(response.data)
     });
   },
   async deleteRiver({commit}, payload){
         await $axios.delete(`rivers/${payload.id}/delete`).then((response) => {
-          console.log(response.data)
           commit('REMOVE_RIVER', payload.id)
+          console.log(response.data)
         });
     }
   }

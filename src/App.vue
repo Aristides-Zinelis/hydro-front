@@ -15,11 +15,6 @@ export default {
   },
    created() {
     document.addEventListener('beforeunload', this.handler)
-  },
-  methods: {
-    handler: function handler(event) {
-        console.log('me voy', event)
-    }
   }
 }
 </script>
