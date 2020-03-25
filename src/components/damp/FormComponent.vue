@@ -7,7 +7,6 @@
             </ul>
         </div>
         <div v-if="!errors.length  && formSubmited">
-            <b>River: {{river.name}} added succesfully! </b>
             <ul>
             <li v-for="error in errors" :key="error">{{ error }}</li>
             </ul>
@@ -29,8 +28,8 @@
                 <label>Photo:</label>
                 <input type="text" class="form-control" v-model="river.photo"/>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit"/>
+            <div class="form-group" >
+                <input v-if="!formSubmited" type="submit" class="btn btn-primary" value="Submit"/>
             </div>
         </form>
     </div>
@@ -38,12 +37,14 @@
 <script>
 export default {
     name : 'FormComponent',
-    props:['river'],
+    props:{ 
+        river: {}
+    },
     data() {
       return {
           errors: [],
-          formSubmited: '',
-          riverValue: this.river
+          formSubmited: false,
+          riverValue: this.river,
       }
     },
     watch:{

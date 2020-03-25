@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import $axios from '@/service/config'
+import createPersistedState from "vuex-persistedstate"
 
 Vue.use(Vuex)
 
@@ -9,6 +10,7 @@ export default new Vuex.Store({
     rivers: [],
     selectedRiver: ''
   },
+  plugins: [createPersistedState()],
   getters: {
     getRivers: state => {
       return state.rivers
@@ -31,7 +33,7 @@ export default new Vuex.Store({
     },
     REMOVE_RIVER: (state, id) => {
       const index = state.rivers.findIndex(river => river.id == id)
-      state.cars.splice(index, 1)
+      state.rivers.splice(index, 1)
      },
   },
   actions: {

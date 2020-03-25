@@ -4,47 +4,43 @@
          <h1>Update River</h1>
       </div>
   <div>
+     <b v-if="updated">River updated succesfully! </b>
    <FormComponent 
    :river="getRiver"
    @submit="updateRiver"
    />
+   <button v-if="updated" v-on:click="goBack">
+             go back
+   </button>
    </div>
   </div>
 </template>
 <script>
 import FormComponent from '@/components/damp/FormComponent'
-import { mapGetters, mapMutations} from 'vuex'
+import { mapGetters} from 'vuex'
 
   export default {
   name : 'UpdateRiver',
   components: {
     FormComponent
   },
+  data() {
+      return {
+          updated: false
+      }
+    },
   computed: {
-   ...mapGetters(['getRiver']),
-   ...mapMutations(['SELECT_RIVER'])
+   ...mapGetters(['getRiver'])
   },
   methods: {
        async updateRiver(e) {
-           console.log(e)
            this.$store.dispatch('updateRiver', e)
+           this.updated = true
         },
-    },
-    created(){
-        if (localStorage.getItem('river')) {
-            try {
-               this.SELECT_RIVER(JSON.parse(sessionStorage.getItem('river')))
-            } catch(e) {
-                sessionStorage.removeItem('river');
+         goBack(){
+           this.$router.push({ path: '/'})
         }
     }
-    },
-    destroyed(){
-        sessionStorage.setItem('river', this.getRiver)
-    },
-    mounted(){
-   
-  }
 }
 </script>
 <style ang="scss" scoped>
