@@ -37,28 +37,36 @@ export default new Vuex.Store({
   },
   actions: {
     async getRivers({commit}) {
-      const res = await $axios.get('/rivers');
-      commit('SET_RIVERS', res.data);
-  
+      await $axios.get('/rivers').then((response)=>{
+        commit('SET_RIVERS', response.data);
+      }).catch((error) => {
+        console.warn(error);
+    });
   },
     async addRiver({commit}, payload){
       await $axios.post('/rivers/create', payload).then((response) => {
         commit('SET_RIVERS', response.data);
         console.log(response.data)
-    });
+    }).catch((error) => {
+      console.warn(error);
+  });
           
   },
   async updateRiver({commit}, payload){
     await $axios.put(`/rivers/${payload.id}/update`, payload).then((response) => {
       commit('SET_RIVERS', response.data);
       console.log(response.data)
-    });
+    }).catch((error) => {
+      console.warn(error);
+  });
   },
   async deleteRiver({commit}, payload){
         await $axios.delete(`rivers/${payload.id}/delete`).then((response) => {
           commit('REMOVE_RIVER', payload.id)
           console.log(response.data)
-        });
+        }).catch((error) => {
+          console.warn(error);
+      });
     }
   }
 })
