@@ -36,8 +36,9 @@ export default new Vuex.Store({
      },
   },
   actions: {
-    async getRivers({commit}) {
+    async callRivers({commit}) {
       await $axios.get('/rivers').then((response)=>{
+        console.log(response)
         commit('SET_RIVERS', response.data);
       }).catch((error) => {
         console.warn(error);

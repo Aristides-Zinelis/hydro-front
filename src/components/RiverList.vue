@@ -33,19 +33,20 @@
 </template>
 
 <script lang="ts">
-import { mapGetters, mapMutations} from 'vuex'
+import { mapGetters, mapMutations, mapActions} from 'vuex'
 
 export default {
  name : 'RiverList',
 
  mounted () {
-    this.$store.dispatch('getRivers')
+    this.callRivers()
   },
  computed: {
    ...mapGetters(['getRivers'])
   },
   methods:{
     ...mapMutations(['SELECT_RIVER']),
+    ...mapActions(['callRivers']),
     goUpdate(river){
       this.SELECT_RIVER(river)
       this.$router.push({ path: '/update-river'})
