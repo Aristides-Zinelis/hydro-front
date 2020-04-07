@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
+    "flush-promises": "^1.0.2",
     "moment": "^2.24.0",
     "sinon": "^9.0.1",
     "vue": "^2.6.11",

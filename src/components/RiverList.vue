@@ -13,17 +13,17 @@
        </table>
        <div class="scrollable">
         <table class="table">
-        <tr v-for="river in getRivers" :key="river.id">
+        <tr v-for="river in getRivers" :key="river.id" class="tr">
           <td>{{river.name }}</td>
           <td>{{river.countrySource }}</td>
           <td>{{river.length }}</td>
           <td>{{river.photo }}</td>
           <td>
-            <button v-on:click="goUpdate(river)">
+            <button class="button" v-on:click="goUpdate(river)">
               Update
             </button></td>
             <td>
-            <button v-on:click="goDelete(river)">
+            <button class="button" v-on:click="goDelete(river)">
               Delete
             </button></td>
         </tr>
@@ -39,7 +39,7 @@ export default {
  name : 'RiverList',
 
  mounted () {
-    this.callRivers()
+   this.$store.dispatch('callRivers')
   },
  computed: {
    ...mapGetters(['getRivers'])
