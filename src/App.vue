@@ -12,9 +12,6 @@ export default {
   components: {
     Header,
     Footer
-  },
-   created() {
-    document.addEventListener('beforeunload', this.handler)
   }
 }
 </script>
